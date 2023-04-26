@@ -1,0 +1,18 @@
+list_team:
+   path: /
+   controller: App\Controller\TeamController::index
+add_player:
+   path: add_player/{id}
+   controller: App\Controller\TeamController::add_player
+team_players:
+   path: team_players/{id}
+   controller: App\Controller\TeamController::team_players
+add_team:
+   path: add_team
+   controller: App\Controller\TeamController::add_team
+store_team:
+  path: store_team
+  controller: App\Controller\TeamController::store_team
+store_player:
+  path: store_player
+  controller: App\Controller\TeamController::store_player

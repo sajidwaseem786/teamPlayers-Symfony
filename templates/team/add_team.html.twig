@@ -1,0 +1,35 @@
+ {% extends 'base.html.twig' %}
+{% block title %}Teams And Players!{% endblock %}
+
+{% block body %}
+<div class="container">
+<h2 style="text-align:center;margin-top:2rem">Add Team </h2>
+{% for flashMessage in app.session.flashbag.get('success') %}
+<div class="alert alert-success" style="text-align:center;">
+    {{ flashMessage }}
+</div>
+{% endfor %}
+
+
+<form action="{{path('store_team')}}" method="post">
+<input type="hidden" name="token" value="{{ csrf_token('store-item') }}"/>
+  <div class="form-group">
+    <label for="email">Name:</label>
+    <input type="text" name="teamName" class="form-control" placeholder="Enter Name" id="tName" required>
+  </div>
+ <div class="form-group">
+    <label for="email">Country:</label>
+    <select name="countryName" class="form-control" id="tCountry" required>
+    {% for country in countries %}
+    <option value="{{country.country}}">{{country.country}}</option>
+    {% endfor %}
+    </select>
+  </div>
+   <div class="form-group">
+    <label for="email">Balance:</label>
+    <input type="number" name="teamBalance" class="form-control" placeholder="Enter Balance $" id="tBalance" required>
+  </div>
+  <button type="submit" class="btn btn-primary">Add Team</button>
+</form>
+</div>
+{% endblock %}

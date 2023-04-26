@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Teams And Players!{% endblock %}
+
+{% block body %}
+<div class="container">
+<h2 style="text-align:center;margin-top:2rem">Teams And Players </h2>
+<div class="row">
+  {% for player in players %}
+  <div class="col-sm-4 mt-5">
+ <div class="card">
+  <img class="card-img-top" src="https://www.w3schools.com/bootstrap4/img_avatar1.png" alt="Card image">
+  <div class="card-body">
+    <h4 class="card-title">{{player.name}}</h4>
+    <p class="card-text">{{player.surname}}</p>
+    <a href="#" class="btn btn-primary">Buy</a>
+     <a href="#" class="btn btn-success">Sell</a>
+  </div>
+</div>
+</div>
+{% endfor %}
+</div>
+   {% if maxPages > 1 %}
+<ul class="pagination mt-5">
+    {# `«` arrow  #}
+    <li {{ thisPage == 1 ? 'class="disabled page-item"' :  'class="page-item"'}}>
+        <a class="page-link"  href="{{ path('team_players', {id:team,page: thisPage-1 < 1 ? 1 : thisPage-1}) }}">«</a>
+    </li>
+
+    {# Render each page number #}
+    {% for i in 1..maxPages %}
+    <li {{ thisPage == i ? 'class="active page-item"' : 'class="page-item"'}}>
+    <a class="page-link" href="{{ path('team_players', {id:team,page: i}) }}">{{ i }}</a>
+    </li>
+    {% endfor %}
+
+    {# `»` arrow #}
+    <li {{ thisPage == maxPages ? 'class="disabled page-item"' :  'class="page-item"' }}>
+        <a class="page-link" href="{{ path('team_players', {id:team,page: thisPage+1 <= maxPages ? thisPage+1 : thisPage}) }}">»</a>
+    </li>
+</ul>
+{% endif %}
+  </div>
+{% endblock %}
